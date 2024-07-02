@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "b3873436-c3c3-4062-bc53-88a9b7a7451f",
+		"name": "Api_Sondas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "15950360"
+	},
+	"item": [
+		{
+			"name": "Obtener Toda la info Sondas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/api/sondas"
+			},
+			"response": []
+		},
+		{
+			"name": "Temperatura Body Vacio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/sondas"
+			},
+			"response": []
+		},
+		{
+			"name": "Guardar Temperatura Invalida",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"temperatura\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/sondas"
+			},
+			"response": []
+		},
+		{
+			"name": "Guardar temperatura valida",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 5,\n    \"temperatura\": 29\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/api/sondas"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener Una sonda",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:8080/api/sondas/5"
+			},
+			"response": []
+		}
+	]
+}

@@ -14,12 +14,12 @@ class Servicio {
     }
     obtenerSonda = async (id) => {
         if(id < 1 || id > TOTAL_SONDAS_USO) throw new ErrorIDIncorrecto();
+        id = parseInt(id);
         const sondaEncontrada = await this.modelo.obtenerSonda(id);
         return sondaEncontrada;
     }
     guardarTemperatura= async (temperatura) => {
         const esTemperaturaValida = validarTemperatura(temperatura);
-        console.log(esTemperaturaValida);
         if(esTemperaturaValida.error) throw new ErrorTemperaturaInvalida();
         const timestamp = new Date().toString();
         temperatura.timestamp = timestamp;
