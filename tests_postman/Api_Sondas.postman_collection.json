@@ -77,6 +77,14 @@
 				"url": "localhost:8080/api/sondas/5"
 			},
 			"response": []
+		},
+		{
+			"name": "informe",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
