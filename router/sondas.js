@@ -7,6 +7,7 @@ class Router {
         this.controlador = new Controlador();
     }
     start() {
+        this.router.get('/informe', this.controlador.obtenerInforme);
         this.router.get('/', this.controlador.obtenerSondas);
         this.router.get('/:id', this.controlador.obtenerSonda);
         this.router.post('/', this.controlador.guardarTemperatura);

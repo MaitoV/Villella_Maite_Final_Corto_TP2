@@ -1,4 +1,4 @@
-import Servicio from '../servicio/sondas.js';
+import Servicio from './../servicio/sondas.js';
 import {ErrorBodyVacio} from './../utils/ErrorPersonalizado.js';
 import esObjetoVacio from './../utils/esObjetoVacio.js';
 
@@ -28,6 +28,10 @@ class Controlador {
         } catch (error) {
             next(error);
         }
+    }
+    obtenerInforme = async (req, res) => {
+        const informe = await this.servicio.generarInforme();
+        res.json(informe);
     }
 }
 

@@ -2,10 +2,12 @@ import ModelFactory from '../model/DAO/sondasFactory.js';
 import {MODO_PERSISTENCIA, TOTAL_SONDAS_USO} from './../config.js'
 import {validarTemperatura} from './validaciones/temperatura.js';
 import {ErrorTemperaturaInvalida, ErrorIDIncorrecto} from './../utils/ErrorPersonalizado.js';
+import ServicioInformes from './informes.js';
 
 class Servicio {
     constructor() {
         this.modelo = ModelFactory.get(MODO_PERSISTENCIA);
+        this.servicioInformes = new ServicioInformes();
     }
 
     obtenerSondas = async () => {
@@ -26,6 +28,11 @@ class Servicio {
         const temperaturaGuardada = await this.modelo.guardarTemperatura(temperatura);
         return temperaturaGuardada;
     } 
+    generarInforme = async () => {
+        const sondas = await this.obtenerSondas();
+        const estadisticas = await this.servicioInformes.calcularEstadisticas(sondas);
+        return {estadisticas: estadisticas} ;
+    }
 }
 
 export default Servicio;
