@@ -1,15 +1,36 @@
 import express from 'express';
-import RouterSonda from './router/sondas.js'; 
-import { errorHandler } from './middleware/errorHandler.js';
-import {PORT} from './config.js';
+import SondaRouter from './router/sondas.js';
+import errorHandler from './middleware/errorHandler.js';
 
-const app = express();
+class Server {
+    constructor(port, persistencia, notificacion) {
+        this.port = port;
+        this.persistencia = persistencia;
+        this.notificacion = notificacion;
 
-app.use(express.json());
+        this.app = express()
+        this.server = null;
+    }
+    async start() {
+        this.app.use(express.json());
 
-app.use('/api/sondas', new RouterSonda().start());
-app.use(errorHandler);
+        this.app.use('/api/sondas', new SondaRouter().start());
+        this.app.use(errorHandler);
 
-const server = app.listen(PORT, () => console.log('Servidor ApiRestFul escuchando en el puerto ' + PORT));
+        const PORT = this.port;
+        this.server = this.app.listen(PORT, () => console.log(`Servidor ApiRest escuchando en el puerto ${PORT}`));
+        this.server.on('error', error => console.log(`Error en servidor: ${error.message}`));
 
-server.on('error', (error) => console.log('Error en servidor: ' + error.message));
+        return this.app;
+    }
+    async stop() {
+        if(this.server) {
+            this.server.close()
+            this.server = null
+        }
+    }
+}
+
+export default Server;
+
+

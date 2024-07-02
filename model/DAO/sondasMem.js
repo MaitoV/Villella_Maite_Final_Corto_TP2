@@ -13,9 +13,7 @@ class ModelMem {
         return this.#sondas;
     }
     obtenerSonda = async (id) => {
-        console.log(id);
         const temperaturasEncontradas = this.#sondas.filter(sonda => sonda.id === id);
-        console.log(temperaturasEncontradas);
         return temperaturasEncontradas; 
     }
     guardarTemperatura = async (temperatura) => {
